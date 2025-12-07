@@ -84,7 +84,7 @@ Follow these steps to get started:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/Peeyush-04/toon-tailor.git
+   git clone https://github.com/sethukumar1709/toon-tailor.git
    cd toon-tailor
    ```
 
