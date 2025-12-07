@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const CharacterPreview = ({ character }) => {
-  const PUBLIC_URL = import.meta.env.VITE_GEMINI_API_KEY || "http://localhost:5173/toon-tailor/";
+  const PUBLIC_URL = import.meta.env.VITE_PUBLIC_URL || "http://localhost:5173/toon-tailor/";
   return (
     <div className="bg-[#110463] p-4 rounded-lg shadow-md max-w-sm mx-auto ">
       <h2 className="text-xl font-semibold mb-3 text-center text-white">Character Preview</h2>
@@ -16,7 +16,7 @@ const CharacterPreview = ({ character }) => {
               <div>
                 {character.equipment.bag &&
                   <div className="absolute top-0">
-                    <img src={`${PUBLIC_URL}/assets/avatars/backpacks/${character.equipment.bag.toLowerCase()}.svg`} class="transition-all" alt="backpack" className="height-[414px] width-[250px]" />
+                    <img src={`${PUBLIC_URL}/assets/avatars/backpacks/${character.equipment.bag.toLowerCase()}.svg`}  alt="backpack"  className="transition-all height-[414px] width-[250px]" />
                   </div>
                 }
                 <div className="absolute top-0">
