@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { RACES, CLASSES, GENDERS, CLASS_EQUIPMENT, 
+import { useState } from 'react';
+import { RACES, CLASSES, GENDERS, CLASS_EQUIPMENT,
          CLASS_ABILITIES, RACE_ABILITIES, hairColors } from '../../utils/constants';
 import { calculateAttributes, createNewCharacter } from '../../services/characterService';
 import  { generateCharacter }  from '../../services/generatorService.js';
@@ -21,7 +21,7 @@ const CharacterGenerator = ({ onCharacterGenerated,character }) => {
     try {
       const message = `
         I want you to create a character for an RPG game based on this description: "${prompt}".
-        
+
         Current character details:
         ${JSON.stringify(character)}
 
@@ -29,15 +29,15 @@ const CharacterGenerator = ({ onCharacterGenerated,character }) => {
         - Races: ${RACES.join(', ')}
         - Classes: ${CLASSES.join(', ')}
         - Genders: ${GENDERS.join(', ')}
-        
+
         Generate a name appropriate for the character.
-              
+
         Also include:
         - Hair color from: ${Object.keys(hairColors).join(', ')}
         - Eye color (hex color code)
         - Skin tone (hex color code)
         - Height in cm (realistic for race)
-        
+
         Return the result as a valid JSON object with this structure:
         {
           "name": string,
@@ -61,10 +61,10 @@ const CharacterGenerator = ({ onCharacterGenerated,character }) => {
           },
           "selectedAbilities": string[] (select 2-3 abilities appropriate for the class and race)
         }
-        
+
         IMPORTANT: For equipment, you must use the KEYS not the display names. For example, use "b_tee" not "Black T-Shirt".
         Use the appropriate key for each item from this mapping:
-        
+
         Tops: ${Object.entries(CLASS_EQUIPMENT.tops).map(([key, value]) => `${key}: "${value}"`).join(', ')}
         Pants: ${Object.entries(CLASS_EQUIPMENT.pants).map(([key, value]) => `${key}: "${value}"`).join(', ')}
         Footwear: ${Object.entries(CLASS_EQUIPMENT.foots).map(([key, value]) => `${key}: "${value}"`).join(', ')}
@@ -72,18 +72,18 @@ const CharacterGenerator = ({ onCharacterGenerated,character }) => {
         Hats: ${Object.entries(CLASS_EQUIPMENT.hats).map(([key, value]) => `${key}: "${value}"`).join(', ')}
         Accessories: ${Object.entries(CLASS_EQUIPMENT.accessories).map(([key, value]) => `${key}: "${value}"`).join(', ')}
         Bags: ${Object.entries(CLASS_EQUIPMENT.bags).map(([key, value]) => `${key}: "${value}"`).join(', ')}
-        
+
         Hair colors should be one of: ${Object.entries(hairColors).map(([color, prefix]) => `${color} (${prefix})`).join(', ')}
-        
+
         The response should be ONLY the JSON object with no additional text or explanation.
       `;
 
 
 
       const characterData = await generateCharacter(message);
-      
+
       const baseCharacter = createNewCharacter();
-      
+
       const equipmentKeysMap = {};
       Object.keys(CLASS_EQUIPMENT).forEach(category => {
         const categoryMap = {};
@@ -94,7 +94,7 @@ const CharacterGenerator = ({ onCharacterGenerated,character }) => {
       });
 
       const processedEquipment = { ...characterData.equipment };
-      
+
       const generatedCharacter = {
         ...baseCharacter,
         id: Date.now().toString(),
@@ -115,9 +115,9 @@ const CharacterGenerator = ({ onCharacterGenerated,character }) => {
       };
 
       onCharacterGenerated(generatedCharacter);
-      
+
       setPrompt('');
-      
+
     } catch (error) {
       console.error('Error generating character:', error);
       setError('Failed to generate character. Please try again.');
@@ -142,9 +142,9 @@ const CharacterGenerator = ({ onCharacterGenerated,character }) => {
           onChange={(e) => setPrompt(e.target.value)}
         ></textarea>
       </div>
-      
+
       {error && <p className="text-red-500 mb-4">{error}</p>}
-      
+
       <button
         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-blue-300"
         onClick={handleGenerateCharacter}
@@ -152,7 +152,7 @@ const CharacterGenerator = ({ onCharacterGenerated,character }) => {
       >
         {isLoading ? 'Generating...' : 'Generate Character'}
       </button>
-      
+
       <div className="mt-4 text-sm text-gray-600">
         <p>Try descriptions like:</p>
         <ul className="list-disc pl-5 mt-1">
