@@ -1,21 +1,20 @@
-import React from 'react';
 import { CLASS_EQUIPMENT } from '../../utils/constants';
 
 const Equipment = ({ equipment, onChange }) => {
   const availableEquipment = CLASS_EQUIPMENT;
-  
+
   const handleEquipmentChange = (type, item) => {
     onChange({
       ...equipment,
       [type]: item
     });
   };
-  
+
   const handleAddItem = (e) => {
     e.preventDefault();
     const itemInput = e.target.elements.newItem;
     const newItem = itemInput.value.trim();
-    
+
     if (newItem) {
       onChange({
         ...equipment,
@@ -24,7 +23,7 @@ const Equipment = ({ equipment, onChange }) => {
       itemInput.value = '';
     }
   };
-  
+
   const handleRemoveItem = (index) => {
     const updatedItems = [...(equipment.items || [])];
     updatedItems.splice(index, 1);
@@ -37,7 +36,7 @@ const Equipment = ({ equipment, onChange }) => {
   return (
     <div className="bg-white p-4 rounded-lg shadow">
       <h2 className="text-xl font-semibold mb-3">Equipment</h2>
-      
+
       <div className="mb-3">
         <label className="block text-gray-700 mb-1">Top</label>
         <select
@@ -59,7 +58,7 @@ const Equipment = ({ equipment, onChange }) => {
           onChange={(e) => handleEquipmentChange('pant', e.target.value)}
           className="w-full p-2 border rounded"
         >
-          
+
           {Object.keys(availableEquipment.pants).map((pant) => (
             <option key={pant} value={pant}>{availableEquipment.pants[pant]}</option>
           ))}
@@ -120,7 +119,7 @@ const Equipment = ({ equipment, onChange }) => {
         </select>
       </div>
 
-      
+
       <div className="mb-3">
         <label className="block text-gray-700 mb-1">Accessories</label>
         <select
@@ -134,9 +133,9 @@ const Equipment = ({ equipment, onChange }) => {
           ))}
         </select>
       </div>
-      
-      
-      
+
+
+
       <div className="mb-3">
         <label className="block text-gray-700 mb-1">Inventory Items</label>
         <div className="bg-gray-50 p-2 rounded mb-2 max-h-32 overflow-y-auto">
@@ -145,7 +144,7 @@ const Equipment = ({ equipment, onChange }) => {
               {equipment.items.map((item, index) => (
                 <li key={index} className="flex justify-between items-center mb-1">
                   <span>{item}</span>
-                  <button 
+                  <button
                     onClick={() => handleRemoveItem(index)}
                     className="text-red-500 text-xs hover:text-red-700"
                     type="button"
@@ -159,7 +158,7 @@ const Equipment = ({ equipment, onChange }) => {
             <p className="text-gray-500 text-sm">No items added yet</p>
           )}
         </div>
-        
+
         <form onSubmit={handleAddItem} className="flex">
           <input
             type="text"
@@ -167,7 +166,7 @@ const Equipment = ({ equipment, onChange }) => {
             placeholder="Add an item..."
             className="flex-grow p-2 border rounded-l"
           />
-          <button 
+          <button
             type="submit"
             className="bg-blue-500 text-white px-3 py-2 rounded-r hover:bg-blue-600"
           >
@@ -175,7 +174,7 @@ const Equipment = ({ equipment, onChange }) => {
           </button>
         </form>
       </div>
-      
+
       <div className="mt-3 text-sm bg-gray-100 p-2 rounded">
         <p className="font-medium">Equipment Bonuses:</p>
         <ul className="list-disc pl-5 mt-1">
