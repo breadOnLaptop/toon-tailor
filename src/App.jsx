@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useState } from 'react';
 import BasicInfo from './components/BasicInfo/BasicInfo';
 import Attributes from './components/Attributes/Attributes';
@@ -113,7 +112,7 @@ function App() {
                 </button>
               </>
             )}
-            
+
             {(showCharacterList || showGenerator) && (
               <button
                 onClick={() => {
@@ -147,7 +146,7 @@ function App() {
           </div>
         </div>
       )}
-      
+
       {showGenerator && (
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="max-w-md mx-auto">
