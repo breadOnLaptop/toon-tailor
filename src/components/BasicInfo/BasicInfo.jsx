@@ -1,6 +1,5 @@
-import React from 'react';
 import { RACES, CLASSES, GENDERS } from '../../utils/constants';
- 
+
 
 const BasicInfo = ({ character, onChange }) => {
   const handleChange = (e) => {
@@ -11,7 +10,7 @@ const BasicInfo = ({ character, onChange }) => {
   return (
     <div className="bg-white p-4 rounded-lg shadow">
       <h2 className="text-xl font-semibold mb-3">Basic Information</h2>
-      
+
       <div className="mb-3">
         <label className="block text-gray-700 mb-1">Character Name</label>
         <input
@@ -23,7 +22,7 @@ const BasicInfo = ({ character, onChange }) => {
           placeholder="Enter character name"
         />
       </div>
-      
+
       <div className="mb-3">
         <label className="block text-gray-700 mb-1">Race</label>
         <select
@@ -37,7 +36,7 @@ const BasicInfo = ({ character, onChange }) => {
           ))}
         </select>
       </div>
-      
+
       <div className="mb-3">
         <label className="block text-gray-700 mb-1">Class</label>
         <select
@@ -51,7 +50,7 @@ const BasicInfo = ({ character, onChange }) => {
           ))}
         </select>
       </div>
-      
+
       <div className="mb-3">
         <label className="block text-gray-700 mb-1">Gender</label>
         <select
@@ -65,7 +64,7 @@ const BasicInfo = ({ character, onChange }) => {
           ))}
         </select>
       </div>
-      
+
       <div className="mb-3">
         <label className="block text-gray-700 mb-1">Level</label>
         <input
